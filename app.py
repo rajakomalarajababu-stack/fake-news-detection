@@ -75,10 +75,20 @@ if st.button(
         news_vector
     )[0]
 
-    if prediction=="FAKE":
+    if st.button("Predict"):
 
-    st.markdown(
-    f"""
+        news_vector = vectorizer.transform(
+        [news]
+    )
+
+    prediction = model.predict(
+        news_vector
+    )[0]
+
+    if prediction == "FAKE":
+
+        st.markdown(
+        """
 
 <div style='
 background:rgba(0,0,0,0.75);
@@ -108,23 +118,17 @@ Prediction:
 
 Confidence Score:
 
-<br>
-
 95.8%
 
 <br><br>
 
 Risk Level:
 
-<br>
-
 HIGH
 
 <br><br>
 
 Analysis:
-
-<br>
 
 • Suspicious claim detected
 
@@ -135,8 +139,6 @@ Analysis:
 <br>
 
 • Possible misinformation pattern
-
-<br><br>
 
 <hr>
 
@@ -185,15 +187,13 @@ Graphs:
 </div>
 
 """,
-
 unsafe_allow_html=True
-
 )
 
-else:
+    else:
 
-    st.markdown(
-"""
+        st.markdown(
+        """
 
 <div style='
 background:rgba(0,0,0,0.75);
@@ -222,8 +222,6 @@ Prediction:
 <br><br>
 
 Analysis:
-
-<br>
 
 • Reliable wording found
 
@@ -262,7 +260,5 @@ Real News Found:
 </div>
 
 """,
-
 unsafe_allow_html=True
-
 )
