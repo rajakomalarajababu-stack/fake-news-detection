@@ -12,23 +12,7 @@ st.set_page_config(
     page_icon="📰",
     layout="wide"
 )
-st.markdown(
-"""
-<style>
 
-textarea{
-font-weight:bold;
-}
-
-button{
-background-color:#2196F3;
-color:white;
-}
-
-</style>
-""",
-unsafe_allow_html=True
-)
 st.title(
     "📰 Fake News Detection Web App"
 )
@@ -75,190 +59,31 @@ if st.button(
         news_vector
     )[0]
 
-    if st.button("Predict"):
+    if prediction=="FAKE":
 
-        news_vector = vectorizer.transform(
-        [news]
-    )
-
-    prediction = model.predict(
-        news_vector
-    )[0]
-
-    if prediction == "FAKE":
-
-        st.markdown(
-        """
-
-<div style='
-background:rgba(0,0,0,0.75);
-padding:25px;
-border-radius:15px;
-border:2px solid #00BFFF;
-color:white;
-font-weight:bold;
-box-shadow:0px 0px 20px #00BFFF;
-'>
-
-<h2 align='center'>
-
-📰 FAKE NEWS DETECTION DASHBOARD
-
-</h2>
-
-<hr>
-
-Prediction:
-
-<br>
-
-⚠️ FAKE NEWS
-
-<br><br>
-
-Confidence Score:
-
-95.8%
-
-<br><br>
-
-Risk Level:
-
-HIGH
-
-<br><br>
-
-Analysis:
-
-• Suspicious claim detected
-
-<br>
-
-• Unverified wording found
-
-<br>
-
-• Possible misinformation pattern
-
-<hr>
-
-Model Accuracy:
-
-96%
-
-<br><br>
-
-Articles Checked:
-
-12,450
-
-<br><br>
-
-Fake News Found:
-
-4,120
-
-<br><br>
-
-Real News Found:
-
-8,330
-
-<br><br>
-
-Graphs:
-
-<br>
-
-📊 Fake vs Real Distribution
-
-<br>
-
-📈 Confidence Score Graph
-
-<br>
-
-📉 Word Frequency Analysis
-
-<br>
-
-☁️ Suspicious Keywords Cloud
-
-</div>
-
-""",
-unsafe_allow_html=True
-)
+        st.error(
+            "⚠️ FAKE NEWS DETECTED"
+        )
 
     else:
 
-        st.markdown(
-        """
+        st.success(
+            "✅ REAL NEWS"
+        )
+st.markdown(
+"""
+<style>
 
-<div style='
-background:rgba(0,0,0,0.75);
-padding:25px;
-border-radius:15px;
-border:2px solid #00FF99;
-color:white;
+textarea{
 font-weight:bold;
-box-shadow:0px 0px 20px #00FF99;
-'>
+}
 
-<h2 align='center'>
+button{
+background-color:#2196F3;
+color:white;
+}
 
-📰 FAKE NEWS DETECTION DASHBOARD
-
-</h2>
-
-<hr>
-
-Prediction:
-
-<br>
-
-✅ REAL NEWS
-
-<br><br>
-
-Analysis:
-
-• Reliable wording found
-
-<br>
-
-• Information pattern appears normal
-
-<br>
-
-• Content structure verified
-
-<hr>
-
-Model Accuracy:
-
-96%
-
-<br><br>
-
-Articles Checked:
-
-12,450
-
-<br><br>
-
-Fake News Found:
-
-4,120
-
-<br><br>
-
-Real News Found:
-
-8,330
-
-</div>
-
+</style>
 """,
 unsafe_allow_html=True
 )
